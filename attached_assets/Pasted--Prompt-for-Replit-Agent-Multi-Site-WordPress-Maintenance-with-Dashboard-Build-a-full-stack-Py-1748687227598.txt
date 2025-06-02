@@ -1,0 +1,43 @@
+🧠 Prompt for Replit Agent (Multi-Site WordPress Maintenance with Dashboard):
+
+Build a full-stack Python web application that provides a centralized dashboard for managing automated maintenance tasks across multiple WordPress websites. The app should perform the following for each site defined in a configuration file or database:
+
+🔁 Workflow for Each Site:
+Backup to Backblaze B2:
+Automatically trigger a WordPress backup using WP-CLI or the All-in-One WP Migration plugin and upload the backup to Backblaze B2.
+
+Initial Screenshot Capture:
+Use a headless browser like Playwright to take full-page screenshots of key pages (home, blog, contact, etc.) and store them for comparison.
+
+Plugin Update with Error Handling:
+Use WP-CLI to update plugins one by one. If an update fails, log the error and skip further updates for that site.
+
+Post-Update Screenshot Capture:
+Take another round of full-page screenshots after updates complete.
+
+Visual Comparison:
+Use pixelmatch, SSIM, or a similar image diff library to compare before/after screenshots and detect layout issues.
+
+Alert Notification:
+Send an email alert if any discrepancies or update errors are found. Include logs and screenshots.
+
+Final Report:
+Generate a downloadable HTML or PDF report summarizing backup status, plugin update results, comparison results, and timestamps.
+
+🖥️ Dashboard Features:
+List of all connected WordPress sites with status indicators (e.g., OK, error, updated, changes found).
+
+Buttons to trigger full maintenance workflow per site.
+
+Logs, screenshots, and reports downloadable from the UI.
+
+Schedule tasks (via cron or Celery/APS) or trigger manually.
+
+Admin authentication (basic login).
+
+🔧 Configuration:
+Store WordPress site details (URL, SSH/WP-CLI access, pages to scan) in a database or config file.
+
+Use environment variables or .env for secrets like Backblaze B2 keys and email credentials.
+
+Use FastAPI or Flask for the backend, and a minimal dashboard frontend with HTML/CSS (or Tailwind, Bootstrap, or React if needed). The code should be modular and maintainable.
